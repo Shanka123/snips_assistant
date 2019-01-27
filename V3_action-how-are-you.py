@@ -9,10 +9,10 @@ import io
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
 
-INTENT_HOW_ARE_YOU = "bezzam:how_are_you"
-INTENT_GOOD = "bezzam:feeling_good"
-INTENT_BAD = "bezzam:feeling_bad"
-INTENT_ALRIGHT = "bezzam:feeling_alright"
+INTENT_HOW_ARE_YOU = "shanka1997:how_are_you"
+INTENT_GOOD = "shanka1997:feeling_good"
+INTENT_BAD = "shanka1997:feeling_bad"
+INTENT_ALRIGHT = "shanka1997:feeling_alright"
 
 INTENT_FILTER_FEELING = [INTENT_GOOD, INTENT_BAD, INTENT_ALRIGHT]
 
@@ -39,9 +39,9 @@ def how_are_you_callback(hermes, intent_message):
     w = observation.get_weather()
     temp = w.get_temperature('celsius')["temp"]
     if temp >= float(config["secret"]["temperature_threshold"]):
-        response = "I'm feeling great! "
+        response = "I'm feeling great! Not so cold "
     else:
-        response = "Not so good. "
+        response = "Not so good. Very chilling out "
     response += "It's {} degrees in {}. How are you?".format(temp, config["secret"]["city"])
 
     hermes.publish_continue_session(session_id, response, INTENT_FILTER_FEELING)
